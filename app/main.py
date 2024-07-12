@@ -28,10 +28,11 @@ def main():
             request_path = request_data[0].split(" ") 
             # print(f"Requested Path: {request_path}")
             
+            request_string = request_path[1].split()
             # Check condtion
-            if request_path[1] == "/":
+            if request_string[0] == "/":
                 connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
-            elif request_path[1] != "/":
+            elif request_string[0] != "/":
                 connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
 if __name__ == "__main__":
