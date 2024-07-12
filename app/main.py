@@ -19,20 +19,20 @@ def main():
                 # print(f"Received Data: {data} ")
 
                 # decode data in utf-8 format by default
-                request_data = data.decode().split("\r\n")
+                request_data = data.split(" ")
                 # print(f"Decoded Data: {decode_data}")
 
                 if not data:
                     break
 
-                request_path = request_data[0].split(" ") 
+                request_path = request_data[1] 
                 # print(f"Requested Path: {request_path}")
             
-                request_string = request_path[1].split()
+                # request_string = request_data[1].split()
                 # Check condtion
-                if request_string[0] == "/":
+                if request_path[0] == "/":
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
-                elif request_string[0] != "/":
+                elif request_path[0] != "/":
                     connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
 if __name__ == "__main__":
