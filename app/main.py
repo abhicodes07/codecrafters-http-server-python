@@ -16,15 +16,15 @@ def main():
         while True:
             # recieves data from the connection
             data = connection.recv(1024)
-            print(f"Received Data: {data} ")
+            # print(f"Received Data: {data} ")
 
             # decode data in utf-8 format by default
             decode_data = data.decode()
-            print(f"Decoded Data: {decode_data}")
+            # print(f"Decoded Data: {decode_data}")
 
             # split data by clrf
             request_data = decode_data.split("\r\n")
-            print(f"Requested Data = {request_data}")
+            # print(f"Requested Data = {request_data}")
 
             #default response
             response = b"HTTP/1.1 200 OK\r\n\r\n"
@@ -33,7 +33,7 @@ def main():
                 break
 
             request_path = request_data[0].split(" ") 
-            print(f"Requested Path: {request_path}")
+            # print(f"Requested Path: {request_path}")
             
             # Check condtion
             if request_path[1] == "/":
