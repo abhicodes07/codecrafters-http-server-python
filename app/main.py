@@ -36,7 +36,7 @@ def main():
             print(f"Requested Path: {request_path}")
 
             if request_path[1] == "/":
-                response = b"HTTP1.1 404 Not Found\r\n\r\n"
+                response = b"HTTP/1.1 404 Not Found\r\n\r\n"
             connection.sendall(response)
 
 if __name__ == "__main__":
