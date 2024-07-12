@@ -19,8 +19,8 @@ def main():
             print(f"Received Data: {data} ")
 
             # decode data in utf-8 format by default
-            # decode_data = data.decode()
-            # print(f"Decoded Data: {decode_data}")
+            decode_data = data.decode()
+            print(f"Decoded Data: {decode_data}")
 
             # split data by clrf
             request_data = data.split("\r\n")
