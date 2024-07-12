@@ -30,9 +30,9 @@ def main():
             
                 # request_string = request_data[1].split()
                 # Check condtion
-                if request_path[0] == "/":
+                if request_path[0] == "/" and len(request_data[0]>1):
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
-                elif request_path[0] != "/":
+                else:
                     connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
 if __name__ == "__main__":
