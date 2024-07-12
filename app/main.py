@@ -20,17 +20,13 @@ def main():
 
                 # decode data in utf-8 format by default
                 request_data = data.decode().split(" ")
-                # print(f"Decoded Data: {decode_data}")
-
+          
                 if not data:
                     break
 
                 request_path = request_data[1] 
-                # print(f"Requested Path: {request_path}")
-            
-                # request_string = request_data[1].split()
-                # Check condtion
-                if request_path[0] == "/" and len(request_data[0]>1):
+           
+                if request_path[0] == "/" and request_path.len()>1:
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
                 else:
                     connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
