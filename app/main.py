@@ -19,7 +19,7 @@ def main():
                 # print(f"Received Data: {data} ")
 
                 # decode data in utf-8 format by default
-                request_data = data.split(" ")
+                request_data = data.decode().split(" ")
                 # print(f"Decoded Data: {decode_data}")
 
                 if not data:
