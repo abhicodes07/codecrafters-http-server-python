@@ -34,7 +34,8 @@ def main():
 
             request_path = request_data[0].split(" ") 
             print(f"Requested Path: {request_path}")
-
+            
+            # Check condtion
             if request_path[1] == "/":
                 response = b"HTTP/1.1 404 Not Found\r\n\r\n"
             connection.sendall(response)
