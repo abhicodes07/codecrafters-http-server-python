@@ -23,7 +23,7 @@ def main():
             print(f"Decoded Data: {decode_data}")
 
             # split data by clrf
-            request_data = data.split("\r\n")
+            request_data = decode_data.split("\r\n")
             print(f"Requested Data = {request_data}")
 
             #default response
