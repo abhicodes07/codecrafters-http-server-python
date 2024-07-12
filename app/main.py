@@ -19,15 +19,8 @@ def main():
             # print(f"Received Data: {data} ")
 
             # decode data in utf-8 format by default
-            decode_data = data.decode()
+            request_data = data.decode().split("\r\n")
             # print(f"Decoded Data: {decode_data}")
-
-            # split data by clrf
-            request_data = decode_data.split("\r\n")
-            # print(f"Requested Data = {request_data}")
-
-            #default response
-            response = b"HTTP/1.1 200 OK\r\n\r\n"
 
             if not data:
                 break
@@ -37,8 +30,9 @@ def main():
             
             # Check condtion
             if request_path[1] == "/":
-                response = b"HTTP/1.1 404 Not Found\r\n\r\n"
-            connection.sendall(response)
+                connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
+            elif request_path[1] != "/":
+                connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
 if __name__ == "__main__":
     main()
