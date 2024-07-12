@@ -26,7 +26,7 @@ def main():
 
                 request_path = request_data[1] 
            
-                if request_path[0] == "/" and request_path.len()>1:
+                if request_path[0] == "/" and len(request_path)>1:
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
                 else:
                     connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
