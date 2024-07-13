@@ -25,8 +25,9 @@ def main():
                     break
                 request_path = request_data[2]
                 content = request_path[6:]
+                content_type = content.type()
                 content_length = len(request_path[6:])
-                response = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {}\r\n\r\n{}".format(content_length, content)
+                response = "HTTP/1.1 200 OK\r\nContent-Type: {}/plain\r\nContent-Length: {}\r\n\r\n{}".format(content_length, content, content_type)
 
                 if request_path[0] == "/" and len(request_path)>1 and request_path[1:5] != "echo":
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
