@@ -24,7 +24,7 @@ def main():
                     break
                 
                 request_path = request_data[1].split("/")
-                random = request_path[1]
+
                 print(f"Request Data: {request_data}")
                 print(f"Request Path: {request_path}")
                 
@@ -33,7 +33,7 @@ def main():
                     response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
                     connection.sendall(response.encode())
 
-                elif len(random)!='':
+                elif request_path[1] != '':
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
                 
                 else:
