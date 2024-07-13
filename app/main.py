@@ -20,11 +20,11 @@ def main():
 
                 # 3. recieved GET /echo/abc HTTP/1.1\r\nHost: localhost:4221\r\nUser-Agent: curl/7.64.1\r\nAccept: */*\r\n\r\n
                 request_data = data.decode().split(" ")
-                
                 if not data:
                     break
                 
                 request_path = request_data[1].split("/")
+                random = request_path[1]
                 print(f"Request Data: {request_data}")
                 print(f"Request Path: {request_path}")
                 
@@ -33,10 +33,10 @@ def main():
                     response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
                     connection.sendall(response.encode())
 
-                elif len(request_path)==2:
+                elif len(random)<=1:
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
                 
-                elif request_data[1] == '/':
+                else:
                     connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
 if __name__ == "__main__":
