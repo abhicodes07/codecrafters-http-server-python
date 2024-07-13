@@ -39,7 +39,7 @@ def main():
                     user_agent_response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(user_agent)}\r\n\r\n{user_agent}"
                     connection.sendall(user_agent_response.encode())
 
-                elif request_path[1] != '':
+                elif request_path[1] != '' and request_path[1] != "user-agent":
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
                 
                 else:
