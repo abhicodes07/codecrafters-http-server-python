@@ -24,7 +24,8 @@ def main():
 
                 # /user-agent or /echo/abc or /abc or /
                 request_path = request_data[1].split("/")
-                
+                print(f"Requested path: {request_path}")
+                print(f"request_data: {request_data}")
                 # check_UserAgent = request_path[1] # user-agent
 
                 if len(request_path) >= 3 and request_path[1] == "echo":
@@ -32,7 +33,7 @@ def main():
                     response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
                     connection.sendall(response.encode())
 
-                elif request_path[1] != '' and request_path == "user-agent":
+                elif request_path[1] != '' and request_path[1] == "user-agent":
                     raw_agent = request_data[4].split("\r\n") # mango/grape-grape\r\n\r\n
                     user_agent = raw_agent[0] # mango/grape-grape 
 
@@ -40,8 +41,8 @@ def main():
                     connection.sendall(user_agent_response.encode())
 
                 elif request_path[1] != '' and request_path[1] != "user-agent":
-                    connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
-                
+                    connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")  
+
                 else:
                     connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
