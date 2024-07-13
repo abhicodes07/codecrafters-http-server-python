@@ -29,7 +29,7 @@ def main():
                 # content_length = len(request_path[6:])
                 response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
 
-                if request_path[0] == "/" and len(request_path)>1:
+                if request_path[0:] != "/echo" and len(request_path)>1:
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
 
                 if request_path[0:6] == "/echo/":
