@@ -16,18 +16,17 @@ def main():
             while True:
                 # recieves data from the connection
                 data = connection.recv(1024)
-                # decode data in utf-8 format by default
 
+                # decode data in utf-8 format by default
                 # 3. recieved GET /echo/abc HTTP/1.1\r\nHost: localhost:4221\r\nUser-Agent: curl/7.64.1\r\nAccept: */*\r\n\r\n
                 request_data = data.decode().split(" ")
+
                 if not data:
                     break
                 
+                # /echo/abc or /abc or /
                 request_path = request_data[1].split("/")
 
-                print(f"Request Data: {request_data}")
-                print(f"Request Path: {request_path}")
-                
                 if len(request_path) >= 3 and request_path[1] == "echo":
                     content = request_path[2]
                     response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
