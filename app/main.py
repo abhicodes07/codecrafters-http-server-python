@@ -24,7 +24,9 @@ def main():
                 if not data:
                     break
                 request_path = request_data[1].split("/")
+                print(request_path)
                 content = request_path[3]
+                print(content)
                 # content_type = type(content)
                 # content_length = len(request_path[6:])
                 response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
