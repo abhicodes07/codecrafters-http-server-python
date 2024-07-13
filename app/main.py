@@ -23,7 +23,7 @@ def main():
                 
                 if not data:
                     break
-                request_path = request_data[1].split("/")
+                request_path = request_data[1].split("")
                 print(request_path)
                 content = request_path[2]
                 # print(content)
