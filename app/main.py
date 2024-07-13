@@ -34,7 +34,7 @@ def main():
                 elif len(request_path)==2:
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
                 
-                else:
+                elif request_data[1] == "/":
                     connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
 if __name__ == "__main__":
