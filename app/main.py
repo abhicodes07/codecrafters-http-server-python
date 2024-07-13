@@ -23,15 +23,17 @@ def main():
                 
                 if not data:
                     break
-                request_path = request_data[1]
-                print(request_path)
-                content = request_path[2]
+                
+                request_path = request_data[1].split("/")
+                
+                if len(request_path) >= 3:
+                    content = request_path[2]
                 # print(content)
                 # content_type = type(content)
                 # content_length = len(request_path[6:])
                 response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
 
-                if len(request_path)<=2:
+                if len(request_path)==2:
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
                 elif request_path[1] == "echo":
                     connection.sendall(response.encode())
