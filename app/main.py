@@ -32,7 +32,7 @@ def main():
                     response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
                     connection.sendall(response.encode())
 
-                elif request_path == "user-agent":
+                elif request_path[1] != '' and request_path == "user-agent":
                     raw_agent = request_data[4].split("\r\n") # mango/grape-grape\r\n\r\n
                     user_agent = raw_agent[0] # mango/grape-grape 
 
