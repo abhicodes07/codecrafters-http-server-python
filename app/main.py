@@ -33,7 +33,7 @@ def main():
                     response = f"HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: {len(content)}\r\n\r\n{content}"
                     connection.sendall(response.encode())
 
-                elif len(random)<=1:
+                elif len(random)!='':
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
                 
                 else:
