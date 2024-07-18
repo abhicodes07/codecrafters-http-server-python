@@ -8,7 +8,7 @@ def main():
 
     with socket.create_server(("localhost", 4221), reuse_port=True) as server_socket:
     # server_socket.accept() # wait for client
-        connection, address = server_socket.accept()
+        connection, address = server_socket.accept() # address 
 
         with connection:
             while True:
