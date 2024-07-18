@@ -40,7 +40,7 @@ def handle_requests(connection, address):
 
             elif request_path[1] != '' and request_path[1] == "files":
                 directory = sys.argv[2]
-                filename = request_path[7:]
+                filename = request_path[2]
                 print(directory, filename)
                 try:
                     with open(f"/{directory}/{filename}","r") as f:
