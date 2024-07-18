@@ -40,7 +40,8 @@ def handle_requests(connection, address):
 
             elif request_path[1] != '' and request_path[1] == "files":
                 directory = sys.argv[2]
-                filename = request_path[0].reverse()
+                file = request_path.reverse()
+                filename = file[0]
                 print(directory, filename)
                 with open(f"{directory}/{filename}","r") as f:
                     body = f.read()
