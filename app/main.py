@@ -1,6 +1,7 @@
 # Uncomment this to pass the first stage
 import socket
 import threading
+import sys
 
 def handle_requests(connection, address):
     with connection:
@@ -17,6 +18,7 @@ def handle_requests(connection, address):
 
             # /user-agent or /echo/abc or /abc or /
             request_path = request_data[1].split("/")
+
             print(f"Requested path: {request_path}")
             print(f"request_data: {request_data}")
             # check_UserAgent = request_path[1] # user-agent
@@ -34,8 +36,19 @@ def handle_requests(connection, address):
                 connection.sendall(user_agent_response.encode())
 
             elif request_path[1] != '' and request_path[1] != "user-agent":
-                connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")  
+                connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
 
+            elif request_path[1] != '' and request_path[1] == "files":
+                directory = sys.argv[2]
+                filename = request_path[7:]
+                print(directory, filename)
+                try:
+                    with open(f"/{directory}/{filename}","r") as f:
+                        body = f.read()
+                    file_response = f"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: {len(body)}\r\n\r\n{body}"
+                    connection.sendall(file_response.encode())
+                except Exception as e:
+                    connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
             else:
                 connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
