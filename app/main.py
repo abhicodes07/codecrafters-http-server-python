@@ -20,7 +20,7 @@ def handle_requests(connection, address):
             request_path = request_data[1].split("/")
 
             print(f"Requested path: {request_path}")
-            print(f"Requeste path reversed: {reversed(request_path)}")
+            # print(f"Requeste path reversed: {reversed(request_path)}")
             print(f"request_data: {request_data}")
             # check_UserAgent = request_path[1] # user-agent
 
@@ -41,8 +41,7 @@ def handle_requests(connection, address):
 
             elif request_path[1] != '' and request_path[1] == "files":
                 directory = sys.argv[2]
-                file = request_path.reverse()
-                filename = file[0]
+                filename = request_path[-1]
                 print(directory, filename)
                 with open(f"{directory}/{filename}","r") as f:
                     body = f.read()
