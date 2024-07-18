@@ -40,9 +40,9 @@ def handle_requests(connection, address):
 
             elif request_path[1] != '' and request_path[1] == "files":
                 directory = sys.argv[2]
-                filename = request_path[2]
+                filename = reversed(request_path[0])
                 print(directory, filename)
-                with open(f"/{directory}/{filename}","r") as f:
+                with open(f"{directory}/{filename}","r") as f:
                     body = f.read()
                 file_response = f"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: {len(body)}\r\n\r\n{body}"
                 connection.sendall(file_response.encode())
