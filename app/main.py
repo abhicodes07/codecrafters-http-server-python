@@ -43,10 +43,13 @@ def handle_requests(connection, address):
                 directory = sys.argv[2]
                 filename = request_path[-1]
                 print(directory, filename)
-                with open(f"{directory}{filename}","r") as f:
-                    body = f.read()
-                file_response = f"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: {len(body)}\r\n\r\n{body}"
-                connection.sendall(file_response.encode())
+                try:
+                    with open(f"{directory}{filename}","r") as f:
+                        body = f.read()
+                    file_response = f"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: {len(body)}\r\n\r\n{body}"
+                    connection.sendall(file_response.encode())
+                except Exception as e:
+                    connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
 
             else:
                 connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
