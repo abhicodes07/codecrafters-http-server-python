@@ -10,6 +10,9 @@ def main():
     # server_socket.accept() # wait for client
         connection, address = server_socket.accept() # address 
 
+        if connection > 1:
+            connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
+
         with connection:
             while True:
                 # recieves data from the connection
