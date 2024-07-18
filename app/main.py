@@ -20,7 +20,7 @@ def handle_requests(connection, address):
             request_path = request_data[1].split("/")
 
             print(f"Requested path: {request_path}")
-            print(f"Requeste path reversed: {request_path.reverse()}")
+            print(f"Requeste path reversed: {reversed(request_path)}")
             print(f"request_data: {request_data}")
             # check_UserAgent = request_path[1] # user-agent
 
