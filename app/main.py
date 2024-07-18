@@ -39,10 +39,10 @@ def handle_requests(connection, address):
                 connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
 
             elif request_path[1] != '' and request_path[1] == "files":
-                directory = sys.argv[2]
+                directory = "/tmp/data/codecrafters.io/http-server-tester"
                 filename = request_path[2]
                 print(directory, filename)
-                with open(f"/{directory}/{filename}","r") as f:
+                with open(f"{directory}/{filename}","r") as f:
                     body = f.read()
                 file_response = f"HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nContent-Length: {len(body)}\r\n\r\n{body}"
                 connection.sendall(file_response.encode())
