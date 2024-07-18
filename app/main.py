@@ -1,6 +1,6 @@
 # Uncomment this to pass the first stage
 import socket
-
+import threading
 
 def main():
     # You can use print statements as follows for debugging, they'll be visible when running tests.
@@ -8,11 +8,12 @@ def main():
 
     with socket.create_server(("localhost", 4221), reuse_port=True) as server_socket:
     # server_socket.accept() # wait for client
-        connection, address = server_socket.accept() # address 
-
-        if connection > 1:
-            connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
-
+        socket.listen()
+        connection, address = server_socket.accept() 
+         
+        # t = threading.Thread(target=connection req: address).start()
+        t = threading.Thread(target=connection)
+        t.start()
         with connection:
             while True:
                 # recieves data from the connection
