@@ -8,7 +8,7 @@ def main():
 
     with socket.create_server(("localhost", 4221), reuse_port=True) as server_socket:
     # server_socket.accept() # wait for client
-        socket.listen()
+        server_socket.listen()
         connection, address = server_socket.accept() 
          
         # t = threading.Thread(target=connection req: address).start()
