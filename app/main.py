@@ -50,6 +50,10 @@ def handle_requests(connection, address):
                     connection.sendall(file_response.encode())
                 except Exception as e:
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
+            elif request_path[1] != '' and request_path[1] == "POST":
+                return 
+                with open(p, "wb") as out:
+                    out.write()
 
             else:
                 connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
