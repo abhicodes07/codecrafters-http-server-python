@@ -55,8 +55,10 @@ def handle_requests(connection, address):
                 dir = sys.argv[2]
                 file = request_path[-1]
                 print(f"\n\n Directory: {dir}\nFile: {file}\n\n")
+                response_body = request_data[8:]
                 with open(f"{dir}{file}", "w") as f1:
-                    body = f1.write(request_data[8:])
+                    for i in response_body:
+                        body = f1.write(i)
                     body.close()
                 connection.sendall(b"HTTP/1.1 201 Created\r\n\r\n")
 
