@@ -54,6 +54,9 @@ def handle_requests(connection, address):
             elif request_data[0] == "POST" and request_path[1] == "files":
                 dir = sys.argv[2]
                 file = request_path[-1]
+                print(f"\n\n Directory: {dir}\nFile: {file}\n\n")
+                connection.sendall(b"HTTP/1.1 201 Created\r\n\r\n")
+
             else:
                 connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
