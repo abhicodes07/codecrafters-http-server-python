@@ -58,9 +58,9 @@ def handle_requests(connection, address):
                 octet_content = request_data[5].split("\r\n\r\n")
                 response_body = request_data[6:]
                 with open(f"{dir}{file}", "w") as f1:
-                    body = f1.write(f"{octet_content[-1]} ")
+                    body = f1.write(f"{octet_content[-1]}\n")
                     for i in response_body:
-                        body = f1.write(f"{i} ")
+                        body = f1.write(f"{i}\n")
                 connection.sendall(b"HTTP/1.1 201 Created\r\n\r\n")
 
             else:
