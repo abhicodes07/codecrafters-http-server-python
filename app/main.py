@@ -15,13 +15,13 @@ def handle_requests(connection, address):
             # GET /echo/abc HTTP/1.1\r\nHost: localhost:4221\r\nUser-Agent: curl/7.64.1\r\nAccept: */*\r\n\r\n
             # GET /user-agent HTTP/1.1\r\nHost: localhost:4221\r\nUser-Agent: mango/grape-grape\r\n\r\n
             request_data = data.decode().split(" ")
-
-            # /user-agent or /echo/abc or /abc or /
+                
+            # /user-agent or /echo/abc or /abc or / or 
             request_path = request_data[1].split("/")
-
-            print(f"Requested path: {request_path}")
+        
+            print(f"\n\nRequested path: {request_path}")
             # print(f"Requeste path reversed: {reversed(request_path)}")
-            print(f"request_data: {request_data}")
+            print(f"request_data: {request_data}\n\n")
             # check_UserAgent = request_path[1] # user-agent
 
             if len(request_path) >= 3 and request_path[1] == "echo":
@@ -50,11 +50,10 @@ def handle_requests(connection, address):
                     connection.sendall(file_response.encode())
                 except Exception as e:
                     connection.sendall(b"HTTP/1.1 404 Not Found\r\n\r\n")
-            elif request_path[1] != '' and request_path[1] == "POST":
-                return 
-                with open(p, "wb") as out:
-                    out.write()
 
+            elif request_data[0] == "POST" and request_path[1] == "files":
+                dir = sys.argv[2]
+                file = request_path[-1]
             else:
                 connection.sendall(b"HTTP/1.1 200 OK\r\n\r\n")
 
