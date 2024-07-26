@@ -59,7 +59,6 @@ def handle_requests(connection, address):
                 with open(f"{dir}{file}", "w") as f1:
                     for i in response_body:
                         body = f1.write(i)
-                    body.close()
                 connection.sendall(b"HTTP/1.1 201 Created\r\n\r\n")
 
             else:
